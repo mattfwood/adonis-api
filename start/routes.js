@@ -30,3 +30,5 @@ Route.get('/groups', async ({ request }) => {
   console.log(request.query);
   return await Database.table('groups').select('*');
 });
+
+Route.post('/groups/new', 'GroupController.new');

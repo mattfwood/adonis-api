@@ -11,6 +11,8 @@ class UserController {
 
     await user.save();
 
+    console.log(user);
+
     const token = await auth.attempt(email, password);
 
     return token;

@@ -7,6 +7,7 @@ class GroupSchema extends Schema {
     this.create('groups', table => {
       table.increments();
       table.timestamps();
+      table.string('name');
     });
   }
 
