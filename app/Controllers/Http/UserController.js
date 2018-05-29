@@ -18,18 +18,23 @@ class UserController {
     return token;
   }
 
-  async login({ request, auth }) {
-    const { email, password } = request.all();
-    // console.log(email, password);
-    const user = await User.findBy('email', email);
-    console.log(user);
-    const token = await auth.generate(user);
+  async login({ request, auth, response }) {
+    try {
+      const { email, password } = request.post();
+      const token = await auth.attempt(email, password);
 
-    // append user info to token and remove password
-    token.user = user.$attributes;
-    delete token.user.password;
+      const user = await User.findBy('email', email);
 
-    return token;
+      token.user = user.$attributes;
+      delete token.user.password;
+
+      return token;
+    } catch (error) {
+      console.error(error);
+      response.status(500).json({
+        message: error
+      })
+    }
   }
 
   show({ auth, params }) {
