@@ -32,16 +32,22 @@ class UserController {
     } catch (error) {
       console.error(error);
       response.status(500).json({
-        message: error
-      })
+        message: error,
+      });
     }
   }
 
   show({ auth, params }) {
     if (auth.user.id !== Number(params.id)) {
-      return 'You cannot see someone else\'s profile';
+      return "You cannot see someone else's profile";
     }
     return auth.user;
+  }
+
+  async me({ auth, params }) {
+    const user = await auth.getUser();
+    delete user.password;
+    return user;
   }
 }
 

@@ -24,7 +24,9 @@ Route.post('login', 'UserController.login');
 
 Route.post('users/create', 'UserController.create');
 
-Route.get('users/:id', 'UserController.show').middleware('auth');
+// Route.get('users/:id', 'UserController.show').middleware('auth');
+
+Route.get('users/me', 'UserController.me').middleware('auth');
 
 Route.get('/groups', async ({ request, auth }) => {
   console.log(await auth.getUser());
