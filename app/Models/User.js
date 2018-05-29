@@ -3,7 +3,7 @@
 const Model = use('Model');
 
 class User extends Model {
-  static boot () {
+  static boot() {
     super.boot();
 
     /**
@@ -16,6 +16,10 @@ class User extends Model {
     this.addHook('beforeCreate', 'User.hashPassword');
   }
 
+  static get hidden() {
+    return ['password'];
+  }
+
   /**
    * A relationship on tokens is required for auth to
    * work. Since features like `refreshTokens` or
@@ -26,7 +30,7 @@ class User extends Model {
    *
    * @return {Object}
    */
-  tokens () {
+  tokens() {
     return this.hasMany('App/Models/Token');
   }
 

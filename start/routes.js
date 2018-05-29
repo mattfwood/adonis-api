@@ -31,4 +31,20 @@ Route.get('/groups', async ({ request, auth }) => {
   return await Database.table('groups').select('*');
 });
 
+Route.get('/groups/:id', 'GroupController.show');
+
 Route.post('/groups/new', 'GroupController.new');
+
+/**
+ * LISTS
+ */
+
+Route.get('/lists', 'ListController.index');
+
+Route.post('/lists/new', 'ListController.new');
+
+/**
+ * Tasks
+ */
+
+Route.post('/tasks/new', 'TaskController.new');
