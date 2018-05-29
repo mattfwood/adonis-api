@@ -20,8 +20,9 @@ class UserController {
 
   async login({ request, auth }) {
     const { email, password } = request.all();
-    // const token = await auth.attempt(email, password);
+    // console.log(email, password);
     const user = await User.findBy('email', email);
+    console.log(user);
     const token = await auth.generate(user);
 
     // append user info to token and remove password

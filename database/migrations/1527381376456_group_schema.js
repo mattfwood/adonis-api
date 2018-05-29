@@ -8,6 +8,8 @@ class GroupSchema extends Schema {
       table.increments();
       table.timestamps();
       table.string('name');
+      // table.
+      // table.in
     });
   }
 

@@ -31,7 +31,7 @@ class User extends Model {
   }
 
   group() {
-    return this.hasOne('App/Models/Group');
+    return this.belongsTo('App/Models/Group');
   }
 }
 

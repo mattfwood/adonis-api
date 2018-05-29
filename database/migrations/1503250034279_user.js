@@ -16,6 +16,8 @@ class UserSchema extends Schema {
         .unique();
       table.string('password', 60).notNullable();
       table.timestamps();
+      table.integer('group_id').unsigned();
+      table.foreign('group_id').references('group.id');
     });
   }
 
