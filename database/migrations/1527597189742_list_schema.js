@@ -7,7 +7,7 @@ class ListSchema extends Schema {
     this.create('lists', table => {
       table.increments();
       table.timestamps();
-      table.string('title').unique();
+      table.string('title');
       table
         .integer('group_id')
         .unsigned()
