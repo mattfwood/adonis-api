@@ -27,7 +27,7 @@
     "sqlite3": "^4.0.0"
   },
   "devDependencies": {},
-  "autoload": {
-    "App": "./app"
+  "engines": {
+    "node": "8.9.0"
   }
 }
