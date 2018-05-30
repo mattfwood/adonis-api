@@ -3,6 +3,19 @@
 const Model = use('Model');
 
 class Group extends Model {
+  static boot() {
+    super.boot();
+
+    /**
+     * A hook to hash the user password before saving
+     * it to the database.
+     *
+     * Look at `app/Models/Hooks/User.js` file to
+     * check the hashPassword method
+     */
+    this.addHook('beforeCreate', 'Group.hashInviteToken');
+  }
+
   static get hidden() {
     return ['password'];
   }
@@ -15,6 +28,10 @@ class Group extends Model {
   users() {
     return this.hasMany('App/Models/User');
   }
+
+  // token() {
+  //   return this.hasOne('App/Models/Token');
+  // }
 }
 
 module.exports = Group;

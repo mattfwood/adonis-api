@@ -8,6 +8,7 @@ class GroupSchema extends Schema {
       table.increments();
       table.timestamps();
       table.string('name');
+      table.string('token', 60).notNullable();
     });
   }
 

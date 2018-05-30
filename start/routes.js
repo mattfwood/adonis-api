@@ -33,9 +33,11 @@ Route.get('/groups', async ({ request, auth }) => {
   return await Database.table('groups').select('*');
 });
 
-Route.get('/groups/:id', 'GroupController.show');
-
 Route.post('/groups/new', 'GroupController.new');
+
+Route.get('/groups/token', 'GroupController.token');
+
+Route.get('/groups/:id', 'GroupController.show');
 
 /**
  * LISTS

@@ -34,8 +34,31 @@ class GroupController {
 
     // populate group's users
     group.users = await group.users();
+    group.token = await group.token();
 
     return group;
+  }
+
+  async token({ request, response, auth }) {
+    const user = await auth.getUser();
+
+    if (!user) {
+      return response.status(404).json({
+        message: 'User not found',
+      });
+    }
+
+    const group = await Group.find(user.group_id);
+
+    if (!group) {
+      return response.status(404).json({
+        message: 'Project not found',
+      });
+    }
+
+    return response.status(200).json({
+      token: group.token,
+    });
   }
 }
 
