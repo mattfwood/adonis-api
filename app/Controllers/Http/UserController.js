@@ -3,19 +3,25 @@ const User = use('App/Models/User');
 
 class UserController {
   async create({ request, auth }) {
-    const body = request.post();
-    const user = new User();
-    const { email, password } = request.all();
+    try {
+      const body = request.post();
+      const user = new User();
+      const { email, password } = request.all();
 
-    Object.assign(user, body);
+      Object.assign(user, body);
 
-    await user.save();
+      await user.save();
 
-    console.log(user);
+      console.log(user);
 
-    const token = await auth.attempt(email, password);
+      const token = await auth.attempt(email, password);
+      token.user = user.$attributes;
+      delete token.user.password;
 
-    return token;
+      return token;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async login({ request, auth, response }) {

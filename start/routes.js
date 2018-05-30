@@ -50,3 +50,5 @@ Route.post('/lists/new', 'ListController.new');
  */
 
 Route.post('/tasks/new', 'TaskController.new');
+
+Route.post('/tasks/:task_id', 'TaskController.update');
