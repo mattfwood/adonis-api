@@ -29,7 +29,7 @@ Route.post('users/create', 'UserController.create');
 Route.get('users/me', 'UserController.me').middleware('auth');
 
 Route.get('/groups', async ({ request, auth }) => {
-  console.log(await auth.getUser());
+  // console.log(await auth.getUser());
   return await Database.table('groups').select('*');
 });
 
@@ -37,7 +37,7 @@ Route.post('/groups/new', 'GroupController.new');
 
 Route.get('/groups/token', 'GroupController.token');
 
-Route.get('/groups/:id', 'GroupController.show');
+Route.post('/groups/show', 'GroupController.show');
 
 /**
  * LISTS

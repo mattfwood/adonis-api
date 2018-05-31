@@ -22,19 +22,19 @@ class GroupController {
     return group;
   }
 
-  async show({ request, response, auth, params: { id } }) {
-    const group = await Group.find(id);
+  async show({ request, response, auth }) {
+    // accepts a token and returns group info
+    const { token } = request.all();
+    const group = await Group.findBy('token', token);
 
     if (!group) {
       return response.status(404).json({
         message: 'Project not found',
-        id,
       });
     }
 
     // populate group's users
     group.users = await group.users();
-    group.token = await group.token();
 
     return group;
   }

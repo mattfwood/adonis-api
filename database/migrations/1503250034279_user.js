@@ -8,8 +8,7 @@ class UserSchema extends Schema {
       table.increments();
       table
         .string('username', 80)
-        .notNullable()
-        .unique();
+        .notNullable();
       table
         .string('email', 254)
         .notNullable()
